@@ -1,0 +1,36 @@
+{
+  "$description": "The Road Home, Part One. Values read from the production file. Import with Tokens Studio as collection 'Road Home'.",
+  "color": {
+    "primary":       { "$type": "color", "$value": "#1C5C7A" },
+    "primary-deep":  { "$type": "color", "$value": "#0D4F7A" },
+    "accent":        { "$type": "color", "$value": "#F4941C" },
+    "accent-text":   { "$type": "color", "$value": "#B5670A" },
+    "success":       { "$type": "color", "$value": "#2E7D50" },
+    "success-text":  { "$type": "color", "$value": "#1E6B43" },
+    "link":          { "$type": "color", "$value": "#349CD4" },
+    "alert":         { "$type": "color", "$value": "#C4462F" },
+    "alert-deep":    { "$type": "color", "$value": "#B23A26" },
+    "canvas":        { "$type": "color", "$value": "#F2F7FA" },
+    "tint":          { "$type": "color", "$value": "#E7F3FB" },
+    "tint-2":        { "$type": "color", "$value": "#EAF3F9" },
+    "mint":          { "$type": "color", "$value": "#E8F3EF" },
+    "cream":         { "$type": "color", "$value": "#FBF0DA" },
+    "blush":         { "$type": "color", "$value": "#FBECE8" },
+    "border":        { "$type": "color", "$value": "#C9D6DF" },
+    "border-blue":   { "$type": "color", "$value": "#D3E6F2" },
+    "border-mint":   { "$type": "color", "$value": "#BFE0D2" }
+  },
+  "font": { "family": { "$type": "fontFamily", "$value": "Jost" } },
+  "radius": {
+    "chip": { "$type": "dimension", "$value": "6px" },
+    "control": { "$type": "dimension", "$value": "12px" },
+    "row": { "$type": "dimension", "$value": "14px" },
+    "card": { "$type": "dimension", "$value": "18px" },
+    "panel": { "$type": "dimension", "$value": "24px" },
+    "avatar": { "$type": "dimension", "$value": "50%" }
+  },
+  "type": {
+    "body": { "$type": "dimension", "$value": "17px" },
+    "line-height": { "$type": "number", "$value": 1.6 }
+  }
+}

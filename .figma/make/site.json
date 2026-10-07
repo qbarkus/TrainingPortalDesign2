@@ -1,0 +1,10 @@
+{
+  "description": "This user-friendly training portal offers a cohesive and professional learning experience, designed to enhance training delivery for educators and learners.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

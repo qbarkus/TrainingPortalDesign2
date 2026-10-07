@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+  a { color: #1C5C7A; text-decoration: none; }
+  a:hover { color: #06304F; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #F4941C; outline-offset: 2px; }
+</style>
+</helmet>
+<div style="font-family: 'Jost', 'Century Gothic', 'Segoe UI', sans-serif; color: #22333F; background: #FFFFFF; min-height: 100vh; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #DCE7EE;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <a href="Training Home.dc.html" style="display: flex; align-items: center; gap: 16px;">
+        <img src="assets/smc-logo-full.png" alt="St. Mary's Center, A Community of Hope, Healing &amp; Justice" style="height: 52px; display: block;">
+        <span style="border-left: 1px solid #DCE7EE; padding-left: 16px; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #5A6873; line-height: 1.35; white-space: nowrap;">Senior Housing Services<br>Training</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 26px; flex-wrap: wrap;">
+        <a href="The Road Home.html" style="font-weight: 500; font-size: 15.5px; color: #22333F; white-space: nowrap;">The Road Home</a>
+        <a href="CES Academy.dc.html" style="font-weight: 500; font-size: 15.5px; color: #22333F; white-space: nowrap;">Coordinated Entry Academy</a>
+        <a href="Road Home Exam.dc.html" style="font-weight: 500; font-size: 15.5px; color: #22333F; white-space: nowrap;">Academy Exam</a>
+        <a href="Road Home Exam.dc.html?exam=ces" style="font-weight: 500; font-size: 15.5px; color: #22333F; white-space: nowrap;">Coordinated Entry Exam</a>
+      </nav>
+    </div>
+  </header>
+
+  <sc-if value="{{ hasProgress }}" hint-placeholder-val="{{ false }}">
+    <div style="background: #06304F; color: #FFFFFF;">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div style="flex: 1 1 18em; min-width: 0; font-size: 15px;"><span style="font-weight: 600;">Welcome back{{ savedNameSuffix }}.</span> <span style="color: #CFE2EE;">{{ progressSummary }}</span></div>
+        <a href="CES Academy.dc.html" style="background: #F4941C; color: #FFFFFF; padding: 8px 18px; border-radius: 10px; font-weight: 600; font-size: 14.5px; white-space: nowrap;">Resume training</a>
+        <button type="button" onClick="{{ startFresh }}" style="background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255,255,255,.45); padding: 7px 16px; border-radius: 10px; font-family: inherit; font-weight: 500; font-size: 14.5px; cursor: pointer; white-space: nowrap;">Not you? Start fresh</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <section style="background: #F2F7FA;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 32px 32px 0;">
+      <img src="assets/academy-team-hero.png" alt="The Senior Housing Services team together at a table beside a whiteboard mapping the path home from outreach through assessment, planning and housing to stability." style="display: block; width: 100%; height: auto; border-radius: 18px;">
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 44px 32px 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; align-items: start;">
+      <div>
+        <p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #F4941C;">Welcome to the training site</p>
+        <h1 style="margin: 0 0 18px; font-size: clamp(32px, 4vw, 46px); font-weight: 600; line-height: 1.12; color: #06304F; text-wrap: balance;">One member journey. One standard of care.</h1>
+        <p style="margin: 0 0 28px; font-size: 18px; line-height: 1.65; color: #3C4A55; max-width: 34em; text-wrap: pretty;">These two trainings teach us to work as one team. The Road Home follows Ms. Evelyn Turner's journey through the parts your seat runs. The Coordinated Entry Academy teaches the system behind it, step by step. Both are shaped to your role, and your progress saves as you go.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="The Road Home.html" style="background: #F4941C; color: #FFFFFF; font-weight: 600; font-size: 16px; padding: 13px 26px; border-radius: 10px;">Start The Road Home</a>
+          <a href="CES Academy.dc.html" style="background: #FFFFFF; color: #1C5C7A; border: 1.5px solid #1C5C7A; font-weight: 600; font-size: 16px; padding: 12px 24px; border-radius: 10px;">Open the Academy</a>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #DCE7EE; border-radius: 16px; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 24px; border-bottom: 1px solid #E7EEF3;">
+          <div><div style="font-size: 16px; font-weight: 600; color: #06304F;">Part One · The Road Home</div><div style="font-size: 14px; color: #5A6873;">Shaped to your role</div></div>
+          <div style="font-size: 16px; font-weight: 600; color: #1C5C7A; white-space: nowrap;">45 min</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 24px; border-bottom: 1px solid #E7EEF3;">
+          <div><div style="font-size: 16px; font-weight: 600; color: #06304F;">Part Two · Coordinated Entry Academy</div><div style="font-size: 14px; color: #5A6873;">Only the steps your seat owns</div></div>
+          <div style="font-size: 16px; font-weight: 600; color: #1C5C7A; white-space: nowrap;">60 min</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 24px;">
+          <div><div style="font-size: 16px; font-weight: 600; color: #06304F;">Final exams</div><div style="font-size: 14px; color: #5A6873;">One per training, retake any time</div></div>
+          <div style="font-size: 16px; font-weight: 600; color: #1C5C7A; white-space: nowrap;">85% to pass</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 72px 32px 24px;">
+    <p style="margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #F4941C;">Your training path</p>
+    <h2 style="margin: 0 0 32px; font-size: clamp(26px, 3vw, 34px); font-weight: 600; line-height: 1.2; color: #06304F;">Two parts, in either order</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 28px;">
+      <a href="The Road Home.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #DCE7EE; border-radius: 18px; overflow: hidden; color: #22333F;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 2; background: #F2F7FA;"><img src="assets/rh-card.png" alt="Ms. Evelyn Turner signing her permanent lease beside her Housing Navigator" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;"></div>
+        <div style="padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #5A6873;">Part One · 45 minutes</div>
+          <h3 style="margin: 0; font-size: 26px; font-weight: 600; color: #06304F;">The Road Home</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A55; text-wrap: pretty;">Walk Ms. Evelyn Turner's journey from No Wrong Door to her permanent lease and the warm handoff to Tenancy Sustaining Services. An interactive story with checks for understanding and a certificate.</p>
+          <div style="margin-top: auto; padding-top: 12px; font-size: 16px; font-weight: 600; color: #1C5C7A;">Begin The Road Home →</div>
+        </div>
+      </a>
+      <a href="CES Academy.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #DCE7EE; border-radius: 18px; overflow: hidden; color: #22333F;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 2; background: #F2F7FA;"><img src="assets/ces-cover.png" alt="A staff member walking a member along a lit path marked Welcome, Housing Problem Solving, Assessment, Housing Navigation and Housing" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;"></div>
+        <div style="padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #5A6873;">Part Two · 60 minutes</div>
+          <h3 style="margin: 0; font-size: 26px; font-weight: 600; color: #06304F;">Coordinated Entry Academy</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #3C4A55; text-wrap: pretty;">The county Coordinated Entry workflow, tailored to older adults. Choose your seat and get only the steps you own, each with a short quiz, a living care plan, and a certificate.</p>
+          <div style="margin-top: auto; padding-top: 12px; font-size: 16px; font-weight: 600; color: #1C5C7A;">Find my steps →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 64px 32px 24px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; align-items: center;">
+      <figure style="margin: 0;">
+        <img src="assets/road-home-cover.jpg" alt="Ms. Evelyn Turner walking onto the St. Mary's Center campus beside a staff member at sunset" style="display: block; width: 100%; height: auto; border-radius: 18px;">
+        <figcaption style="margin-top: 12px; font-size: 14px; color: #5A6873;">Ms. Evelyn Turner arrives at St. Mary's Center, and the journey starts.</figcaption>
+      </figure>
+      <div>
+        <p style="margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #F4941C;">The road to aging with dignity</p>
+        <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3vw, 34px); font-weight: 600; line-height: 1.2; color: #06304F;">Each role runs one part, then hands it on</h2>
+        <p style="margin: 0 0 24px; font-size: 17px; line-height: 1.65; color: #3C4A55; text-wrap: pretty;">Our work is sequential. The member's care plan leads every step, and every pathway moves toward one destination.</p>
+        <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0;">
+          <sc-for list="{{ stages }}" as="stage" hint-placeholder-count="5">
+            <li style="display: flex; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid #E7EEF3;">
+              <span style="flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; background: #E7F3FB; color: #1C5C7A; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{ stage.num }}</span>
+              <span style="flex: 0 0 6.5em; font-size: 17px; font-weight: 600; color: #06304F;">{{ stage.name }}</span>
+              <span style="flex: 1; font-size: 15.5px; color: #5A6873;">{{ stage.desc }}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 64px 32px 24px;">
+    <p style="margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #F4941C;">The team</p>
+    <h2 style="margin: 0 0 32px; font-size: clamp(26px, 3vw, 34px); font-weight: 600; line-height: 1.2; color: #06304F;">The same faces guide both trainings</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 24px;">
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-tanya-v3.png" alt="Tanya Wells, Street Outreach Coordinator" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Tanya Wells</div><div style="font-size: 14px; color: #5A6873;">Street Outreach Coordinator</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-curtis.png" alt="Curtis Boyd, Outreach and Linkage Specialist" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Curtis Boyd</div><div style="font-size: 14px; color: #5A6873;">Outreach &amp; Linkage Specialist</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-marisol.png" alt="Marisol Vega, Housing Services Admin Assistant" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Marisol Vega</div><div style="font-size: 14px; color: #5A6873;">Housing Services Admin Assistant</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-elena.png" alt="Elena Castro, Housing Social Worker" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Elena Castro</div><div style="font-size: 14px; color: #5A6873;">Housing Social Worker</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-carla-v2.png" alt="Carla Montez, Housing Navigator" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Carla Montez</div><div style="font-size: 14px; color: #5A6873;">Housing Navigator</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-renee.png" alt="Renee Dawson, Transitional Housing Coordinator" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Renee Dawson</div><div style="font-size: 14px; color: #5A6873;">Transitional Housing Coordinator</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-hector.png" alt="Hector Salas, Tenancy Sustaining Services Coordinator" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Hector Salas</div><div style="font-size: 14px; color: #5A6873;">Tenancy Sustaining Services</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-sanjay-v2.png" alt="Sanjay Rao, Senior Housing Services Manager" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Sanjay Rao</div><div style="font-size: 14px; color: #5A6873;">Senior Housing Services Manager</div></figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <div style="position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; background: #F2F7FA;"><img src="assets/char-grace.png" alt="Dr. Grace Okoro, Clinical Director of Housing Services" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"></div>
+        <figcaption style="padding-top: 12px;"><div style="font-size: 16px; font-weight: 600; color: #06304F;">Dr. Grace Okoro</div><div style="font-size: 14px; color: #5A6873;">Clinical Director of Housing Services</div></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section style="max-width: 1180px; margin: 0 auto; padding: 64px 32px 72px;">
+    <div style="background: #F2F7FA; border-radius: 18px; padding: 32px 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px; align-items: center;">
+      <div>
+        <h3 style="margin: 0 0 6px; font-size: 21px; font-weight: 600; color: #06304F;">Your progress</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #3C4A55;">Progress saves on this computer. To continue on another one, paste the training code from your Academy page. Sharing a computer? Start fresh before the next person begins.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input value="{{ codeInput }}" onChange="{{ onCodeInput }}" placeholder="Paste your training code" style="flex: 1 1 14em; min-width: 0; padding: 12px 14px; border: 1.5px solid #C9D6DF; border-radius: 10px; font-family: inherit; font-size: 15px; background: #FFFFFF; color: #22333F;">
+          <button type="button" onClick="{{ restoreCode }}" style="background: #1C5C7A; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 22px; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer;">Restore</button>
+        </div>
+        <button type="button" onClick="{{ startFresh }}" style="align-self: flex-start; background: transparent; border: none; padding: 0; font-family: inherit; font-size: 15px; font-weight: 500; color: #1C5C7A; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;">Start fresh on this computer</button>
+        <sc-if value="{{ restoreMsg }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 14.5px; font-weight: 600; color: {{ restoreMsgColor }};">{{ restoreMsg }}</p></sc-if>
+      </div>
+    </div>
+  </section>
+
+  <nav aria-label="Page navigation" style="border-top: 1px solid #DCE7EE;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 20px 32px; display: flex; justify-content: flex-end; align-items: center; gap: 16px;">
+      <a href="The Road Home.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; background: #1C5C7A; color: #FFFFFF; font-weight: 600; font-size: 15.5px; white-space: nowrap;">Next: The Road Home →</a>
+    </div>
+  </nav>
+
+  <footer style="background: #06304F; color: #CFE2EE;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 32px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center;">
+      <div>
+        <div style="font-size: 16px; font-weight: 600; color: #FFFFFF;">St. Mary's Center</div>
+        <div style="font-size: 14px;">A Community of Hope, Healing &amp; Justice · West Oakland</div>
+      </div>
+      <div style="display: flex; gap: 24px; font-size: 14.5px; flex-wrap: wrap;">
+        <a href="The Road Home.html" style="color: #FFFFFF; white-space: nowrap;">The Road Home</a>
+        <a href="CES Academy.dc.html" style="color: #FFFFFF; white-space: nowrap;">Coordinated Entry Academy</a>
+        <a href="Road Home Exam.dc.html" style="color: #FFFFFF; white-space: nowrap;">Exams</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { codeInput: "", restoreMsg: "", restoreOk: false, saved: null, rh: false, exams: 0 };
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem("smc-training-progress");
+      if (raw) this.setState({ saved: JSON.parse(raw) });
+    } catch (e) {}
+    this.setState(this.scan());
+  }
+  scan() {
+    const out = { rh: false, exams: 0 };
+    try {
+      out.rh = !!localStorage.getItem("roadhome.v1");
+      out.exams = Object.keys(localStorage).filter((k) => k.indexOf("smc-exam-") === 0).length;
+    } catch (e) {}
+    return out;
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      hasProgress: !!(s.saved || s.rh || s.exams),
+      progressSummary: [
+        s.rh ? "The Road Home in progress" : "",
+        s.saved && (s.saved.d || []).length ? (s.saved.d || []).length + " Coordinated Entry step" + ((s.saved.d || []).length === 1 ? "" : "s") + " done" : "",
+        s.exams ? "exam attempts saved" : "",
+      ].filter(Boolean).join(" · ") || "Your progress is saved on this device.",
+      startFresh: () => {
+        try { if (window.confirm && !window.confirm("Start fresh on this computer? This clears the saved name, role, The Road Home progress, Coordinated Entry steps and exam attempts on this device only. Other computers are not affected.")) return; } catch (e) {}
+        try { Object.keys(localStorage).filter((k) => k === "smc-training-progress" || k === "roadhome.v1" || k.indexOf("smc-course-pos-") === 0 || k.indexOf("smc-exam-") === 0).forEach((k) => localStorage.removeItem(k)); } catch (e) {}
+        this.setState({ saved: null, rh: false, exams: 0, restoreMsg: "Everything on this computer has been cleared. The next person can start fresh.", restoreOk: true, codeInput: "" });
+      },
+      savedNameSuffix: s.saved && s.saved.n ? ", " + s.saved.n : "",
+      codeInput: s.codeInput,
+      onCodeInput: (e) => this.setState({ codeInput: e.target.value }),
+      restoreCode: () => {
+        const code = (this.state.codeInput || "").trim();
+        try {
+          const b64 = code.replace(/^SMC-/i, "");
+          const data = JSON.parse(decodeURIComponent(escape(atob(b64))));
+          if (!data || typeof data !== "object" || !("r" in data)) throw new Error("bad");
+          localStorage.setItem("smc-training-progress", JSON.stringify(data));
+          this.setState({ saved: data, restoreMsg: "Progress restored. Open the Academy to continue.", restoreOk: true });
+        } catch (e) {
+          this.setState({ restoreMsg: "That code didn't work. Check for missing characters and try again.", restoreOk: false });
+        }
+      },
+      restoreMsg: s.restoreMsg,
+      restoreMsgColor: s.restoreOk ? "#1E6B43" : "#B23A22",
+      stages: [
+        { num: "1", name: "Engage", desc: "Outreach and engagement" },
+        { num: "2", name: "Assess", desc: "Housing clinic and triage" },
+        { num: "3", name: "Plan", desc: "Coordinated Entry" },
+        { num: "4", name: "Connect", desc: "Navigation and placement" },
+        { num: "5", name: "Thrive", desc: "Tenancy sustaining services" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

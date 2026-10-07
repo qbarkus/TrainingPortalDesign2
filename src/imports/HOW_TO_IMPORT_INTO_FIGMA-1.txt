@@ -1,0 +1,14 @@
+Importing into Figma
+
+Figma cannot open HTML files directly. Use the free "html.to.design" plugin:
+
+1. Open the standalone HTML file in Chrome.
+2. Go to each stop you want (Start, then Next). Your progress saves as you go.
+3. In Figma, open Plugins > html.to.design and choose "Import from browser",
+   or install the html.to.design Chrome extension and click it on each screen.
+4. Every screen comes in as editable frames, text, and images.
+
+Tip: set the browser width to 1440px before capturing desktop frames,
+or to 390px for mobile frames.
+
+The images live in the assets/ folder if you want to place them by hand.

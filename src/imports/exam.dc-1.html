@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+  a { color: #22333F; text-decoration: none; }
+  a:hover { color: #0A2A3C; }
+  button:focus-visible, a:focus-visible { outline: 3px solid #F4941C; outline-offset: 2px; }
+</style>
+</helmet>
+<div style="font-family: 'Jost', 'Century Gothic', 'Segoe UI', sans-serif; color: #22333F; background: #FFFFFF; min-height: 100vh; display: flex; flex-direction: column;">
+
+  <header style="background: #06304F; color: #fff; border-bottom: 3px solid #F4941C;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="background: #fff; border-radius: 10px; padding: 5px 8px; display: inline-flex;"><img src="assets/smc-logo-mark.png" alt="St. Mary's Center" style="height: 36px;"></span>
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #fff; white-space: nowrap;">Senior Housing Services</span>
+        <a href="Training Home.dc.html" style="color: #fff; font-size: 13.5px; font-weight: 700; white-space: nowrap; border-bottom: 2px solid rgba(255,255,255,.5);">← Training home</a>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-weight: 600; font-size: 15px; color: #fff;">{{ examTitle }} · Final Exam</div>
+        <div style="font-size: 12.5px; color: #fff;">{{ railLabel }}</div>
+      </div>
+    </div>
+    <div style="height: 7px; background: #0B4366;"><div style="height: 100%; width: {{ progressPct }}; background: #F4941C;"></div></div>
+  </header>
+
+  <main style="flex: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 30px 24px 20px;">
+
+    <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+      <div style="border: 1.5px solid #C9D6DF; border-radius: 12px; overflow: hidden;">
+        <img src="assets/academy-team-hero.png" alt="Senior Housing Services Academy. Every Member. Every Interaction. One Standard of Care. The team passes a One Team baton beside a whiteboard mapping the path home from outreach to stability." style="display: block; width: 100%; height: auto;">
+        <div style="padding: 28px 32px 32px;">
+          <p style="margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #8A4E08;">{{ examTitle }}</p>
+          <h1 style="margin: 0 0 12px; font-weight: 600; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.14; color: #22333F;">Final exam</h1>
+          <p style="margin: 0 0 8px; font-size: 15px; color: #8A4E08; font-weight: 700;">{{ examSubtitle }}</p>
+          <p style="margin: 0 0 20px; font-size: 16.5px; line-height: 1.6; color: #22333F; max-width: 640px;">{{ examBlurb }}</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 22px;">
+            <div style="border: 1.5px solid #C9D6DF; border-radius: 10px; padding: 14px 16px;">
+              <div style="font-weight: 600; font-size: 20px; color: #22333F;">{{ qTotal }} questions</div>
+              <div style="font-size: 13.5px; color: #22333F;">one screen each</div>
+            </div>
+            <div style="border: 1.5px solid #C9D6DF; border-radius: 10px; padding: 14px 16px;">
+              <div style="font-weight: 600; font-size: 20px; color: #22333F;">85% to pass</div>
+              <div style="font-size: 13.5px; color: #22333F;">{{ passNeeded }} correct or better</div>
+            </div>
+            <div style="border: 2px solid #F4941C; border-radius: 10px; padding: 14px 16px; background: #FFF3E4;">
+              <div style="font-weight: 600; font-size: 20px; color: #8A4E08;">{{ critTotal }} critical items</div>
+              <div style="font-size: 13.5px; color: #22333F;">every one must be correct</div>
+            </div>
+          </div>
+          <p style="margin: 0 0 14px; font-size: 15px; line-height: 1.55; color: #22333F;">Questions are drawn in a random order. No feedback appears until you submit, your answers save as you go, and you may retake the exam as many times as you need.</p>
+          <div style="border: 1.5px solid #C9D6DF; border-radius: 10px; overflow: hidden; margin: 0 0 20px;">
+            <div style="background: #1C5C7A; padding: 9px 16px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #fff;">What this exam covers</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));">
+              <div style="padding: 14px 18px; border-right: 2px solid #DCE7EE;">
+                <div style="font-size: 13px; font-weight: 600; color: #22333F; margin-bottom: 6px;">The member journey</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #22333F;">No Wrong Door, senior triage, problem solving, the fork, enrollment, the crisis queue, transitional housing, the housing assessment, the match, and the handoff to Tenancy Sustaining Services.</p>
+              </div>
+              <div style="padding: 14px 18px; background: #FFF3E4;">
+                <div style="font-size: 13px; font-weight: 600; color: #8A4E08; margin-bottom: 6px;">The rules that decide outcomes</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: #22333F;">HRC first for eviction prevention, no rapid rehousing, flexible funds never cash, CLS at every contact, document readiness over queue date, thresholds as current practice, and what staff may never promise.</p>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ hasHistory }}" hint-placeholder-val="{{ false }}">
+            <div style="margin: 0 0 22px; padding: 10px 14px; background: #FFF3E4; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <span style="font-size: 14.5px; color: #8A4E08; font-weight: 700;">{{ attemptLine }}</span>
+              <button onClick="{{ resetHistory }}" style="font-family: inherit; font-size: 13.5px; font-weight: 700; color: #8A4E08; background: #fff; border: 2px solid #F4941C; border-radius: 10px; padding: 6px 14px; cursor: pointer;">Clear my exam history</button>
+            </div>
+          </sc-if>
+          <button onClick="{{ start }}" style="font-family: inherit; font-weight: 600; font-size: 16px; color: #fff; background: #F4941C; border: none; border-radius: 10px; padding: 14px 30px; cursor: pointer;">{{ startLabel }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isQuestion }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px;">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #22333F;">Question {{ qNum }} of {{ qTotal }}</span>
+          <sc-if value="{{ isCritical }}" hint-placeholder-val="{{ false }}">
+            <span style="background: #FFF3E4; border: 2px solid #F4941C; color: #8A4E08; font-weight: 600; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px;">Critical item</span>
+          </sc-if>
+          <span style="font-size: 13px; color: #22333F;">{{ stepLabel }}</span>
+          <span style="font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: #1C5C7A; padding: 3px 10px; border-radius: 999px;">{{ qCategory }}</span>
+        </div>
+
+        <div style="background: #1C5C7A; border-radius: 12px 12px 0 0; padding: 22px 28px;">
+          <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #fff;">{{ scenario }}</p>
+        </div>
+        <div style="background: #fff; border: 1.5px solid #C9D6DF; border-top: none; border-radius: 0 0 12px 12px; padding: 24px 28px 26px;">
+          <h2 style="margin: 0 0 16px; font-weight: 600; font-size: 19px; line-height: 1.35; color: #22333F;">{{ question }}</h2>
+          <div style="display: grid; gap: 10px;">
+            <sc-for list="{{ options }}" as="opt" hint-placeholder-count="3">
+              <button onClick="{{ opt.pick }}" style="text-align: left; font-family: inherit; font-size: 16px; line-height: 1.5; color: #22333F; background: {{ opt.bg }}; border: 2px solid {{ opt.border }}; border-radius: 10px; padding: 13px 16px; cursor: pointer; display: flex; gap: 12px; align-items: flex-start;">
+                <span style="font-weight: 600; color: {{ opt.markColor }}; min-width: 20px;">{{ opt.letter }}</span>
+                <span>{{ opt.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="border: 1.5px solid #C9D6DF; border-top: 8px solid {{ resultRule }}; border-radius: 12px; padding: 30px 32px;">
+          <p style="margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #8A4E08;">Result</p>
+          <h1 style="margin: 0 0 10px; font-weight: 600; font-size: 30px; color: #22333F;">{{ resultHead }}</h1>
+          <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: #22333F; max-width: 620px;">{{ resultBody }}</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 22px;">
+            <div style="border: 1.5px solid #C9D6DF; border-radius: 10px; padding: 14px 16px;">
+              <div style="font-weight: 600; font-size: 22px; color: #22333F;">{{ scorePct }}</div>
+              <div style="font-size: 13.5px; color: #22333F;">{{ scoreFraction }}</div>
+            </div>
+            <div style="border: 2px solid #F4941C; border-radius: 10px; padding: 14px 16px; background: #FFF3E4;">
+              <div style="font-weight: 600; font-size: 22px; color: #8A4E08;">{{ critScore }}</div>
+              <div style="font-size: 13.5px; color: #22333F;">critical items correct</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button onClick="{{ retake }}" style="font-family: inherit; font-weight: 600; font-size: 16px; color: #fff; background: #F4941C; border: none; border-radius: 10px; padding: 13px 26px; cursor: pointer;">Retake the exam</button>
+            <a href="CES Academy.dc.html" style="border: 1.5px solid #C9D6DF; color: #22333F; font-weight: 600; font-size: 16px; padding: 12px 24px; border-radius: 10px;">Back to my learning path</a>
+            <a href="Training Home.dc.html" style="border: 1.5px solid #C9D6DF; color: #22333F; font-weight: 600; font-size: 16px; padding: 12px 24px; border-radius: 10px;">Training home</a>
+          </div>
+        </div>
+
+        <h2 style="margin: 30px 0 12px; font-weight: 600; font-size: 20px; color: #22333F;">Score by category</h2>
+        <div style="display: grid; gap: 8px; margin-bottom: 26px;">
+          <sc-for list="{{ categoryScores }}" as="c" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; gap: 12px; background: #fff; border: 1.5px solid #C9D6DF; border-radius: 10px; padding: 10px 14px;">
+              <span style="flex: 0 0 13em; font-size: 14.5px; font-weight: 700; color: #22333F;">{{ c.name }}</span>
+              <span style="flex: 1; height: 10px; background: #F2F7FA; border-radius: 999px; overflow: hidden;"><span style="display: block; height: 100%; width: {{ c.bar }}; background: {{ c.color }};"></span></span>
+              <span style="flex: 0 0 5em; text-align: right; font-size: 14px; font-weight: 700; color: #22333F;">{{ c.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <h2 style="margin: 0 0 12px; font-weight: 600; font-size: 20px; color: #22333F;">Your answers, reviewed</h2>
+        <div style="display: grid; gap: 12px;">
+          <sc-for list="{{ review }}" as="r" hint-placeholder-count="4">
+            <div style="border: 2px solid {{ r.rule }}; border-radius: 10px; overflow: hidden;">
+              <div style="background: {{ r.rule }}; padding: 8px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <span style="font-weight: 600; font-size: 13px; color: #fff;">{{ r.verdict }}</span>
+                <span style="font-size: 12.5px; color: #fff;">Question {{ r.num }} · {{ r.step }}</span>
+                <sc-if value="{{ r.critical }}" hint-placeholder-val="{{ false }}">
+                  <span style="background: #fff; color: #8A4E08; font-weight: 600; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px;">Critical</span>
+                </sc-if>
+              </div>
+              <div style="padding: 14px 18px 16px;">
+                <p style="margin: 0 0 8px; font-weight: 700; font-size: 15.5px; line-height: 1.45; color: #22333F;">{{ r.question }}</p>
+                <p style="margin: 0 0 4px; font-size: 14.5px; line-height: 1.5; color: #22333F;">You chose: {{ r.chosen }}</p>
+                <p style="margin: 0 0 8px; font-size: 14.5px; line-height: 1.5; color: #22333F;">Correct: {{ r.correct }}</p>
+                <p style="margin: 0 0 6px; font-size: 14.5px; line-height: 1.55; color: #22333F; border-top: 2px solid #F4941C; padding-top: 8px;">{{ r.why }}</p>
+                <p style="margin: 0; font-size: 13px; color: #22333F;">Reference: {{ r.ref }} · Category: {{ r.cat }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+  </main>
+
+  <nav aria-label="Page navigation" style="width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+    <a href="{{ prevPageHref }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: 1.5px solid #C9D6DF; border-radius: 10px; background: #fff; color: #22333F; font-weight: 700; font-size: 14.5px;">← {{ prevPageLabel }}</a>
+    <a href="{{ nextPageHref }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: 1.5px solid #C9D6DF; border-radius: 10px; background: #fff; color: #22333F; font-weight: 700; font-size: 14.5px;">{{ nextPageLabel }} →</a>
+  </nav>
+  <div style="width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px 40px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+    <button onClick="{{ goBack }}" style="visibility: {{ backVis }}; font-family: inherit; font-weight: 600; font-size: 15px; color: #22333F; background: #fff; border: 1.5px solid #C9D6DF; border-radius: 10px; padding: 11px 22px; cursor: pointer;">Back</button>
+    <span style="font-size: 13.5px; font-weight: 600; color: #22333F;">{{ answeredLabel }}</span>
+    <button onClick="{{ goNext }}" style="visibility: {{ nextVis }}; opacity: {{ nextOpacity }}; font-family: inherit; font-weight: 600; font-size: 15px; color: #fff; background: #F4941C; border: none; border-radius: 10px; padding: 12px 26px; cursor: pointer;">{{ nextLabel }}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { phase: "intro", idx: 0, answers: {}, attempts: 0, order: null, history: [] };
+  BANKS = {
+    "road-home": {
+      title: "Senior Housing Services Academy",
+      subtitle: "Ms. Evelyn Turner's journey, end to end",
+      blurb: "The graded exam for the Senior Housing Services Academy: the whole member journey from No Wrong Door to a signed lease and the warm handoff to Tenancy Sustaining Services, with Marcus for the transitional housing question.",
+      questions: [
+    { step:"Step 1 · No Wrong Door", crit:true,
+      s:"Ms. Evelyn Turner mentions over lunch at the Community Café that her rent went up again and she is not sure she can stay. She asks for help finding a permanent place.",
+      q:"What has to happen before Housing Navigation can begin?",
+      o:["A Navigator with capacity picks her up","Coordinated Entry is completed first","A medical or agency referral arrives"], a:1,
+      w:"Coordinated Entry is the required front door to Housing Navigation. No Navigation begins without it, whatever capacity looks like that week.", cat:"System Access", ref:"Course 1: the front door rule" },
+    { step:"Step 1 · No Wrong Door", crit:false,
+      s:"She is 67, drives herself, manages her own medications, and her crisis is a rent increase against a fixed income.",
+      q:"How should her age shape the assessment you complete?",
+      o:["Note likely decline and route toward a care setting","Screen for what is present, and route on what you find","Skip the frailty and safety questions"], a:1,
+      w:"Screen, do not assume. Most older adults are independent, and a crisis at 67 is usually rent and income, not decline. Triage flags are alerts to check, never a default picture of aging.", cat:"Assessment", ref:"Aging with Dignity adaptation, Principle 2" },
+    { step:"Step 2 · Triage and Problem Solving", crit:true,
+      s:"Mr. D., 60, fell behind on rent after his wife died and has an eviction notice in his bag.",
+      q:"What is the first source for eviction prevention help?",
+      o:["St. Mary's Center flexible funds, straight away","The county Housing Resource Center, then turn internal to SMC","A rapid rehousing application"], a:1,
+      w:"We do not do rapid rehousing. The Housing Resource Center is the source to access eviction prevention first, and only then do we turn internal to SMC supports. Flexible funds are last, not first.", cat:"Funding Rules", ref:"HPS Policy rev. 5/14/2025; SMC practice" },
+    { step:"Step 2 · Triage and Problem Solving", crit:true,
+      s:"A resolution plan is agreed and needs 400 dollars for a move-in fee to land it.",
+      q:"How is that payment made?",
+      o:["Cash to the member","To the landlord or vendor, or a trackable card. Never cash","Reimbursed to the member after they pay"], a:1,
+      w:"Flexible funds are never cash and never direct to the participant, even as reimbursement. Third-party payment or a trackable card only, inside the county caps.", cat:"Funding Rules", ref:"HPS Policy rev. 5/14/2025, flexible funds" },
+    { step:"Step 2 · Triage and Problem Solving", crit:false,
+      s:"An older adult on a bench tells you only that she is staying with a friend for now.",
+      q:"Which question opens the housing picture without asking her to label herself?",
+      o:["Are you currently homeless?","Where did you sleep last night?","Have you tried a shelter yet?"], a:1,
+      w:"Many older adults will not self-identify as homeless while couch-surfing. Asking where someone slept last night captures the HUD definition without asking anyone to accept a label.", cat:"System Access", ref:"Senior triage; HUD literal homelessness definition" },
+    { step:"Step 3 · Documenting the Conversation", crit:false,
+      s:"You had the conversation in the field this morning and it has to reach Clarity.",
+      q:"What is the documentation workflow?",
+      o:["Field staff enter Clarity directly at the end of the visit","Field capture, clinical review, then Coordinator entry into Clarity","The supervisor writes it up from the team huddle"], a:1,
+      w:"Three steps, in that order, every time. The Data and Compliance Coordinator moves assessments from HMIS and reconciles for data quality control.", cat:"Case Documentation", ref:"Blueprint 6.5, three-step HMIS workflow" },
+    { step:"Step 3 · Documenting the Conversation", crit:true,
+      s:"Ms. R. returns after four months away and you cannot find her on the first search screen.",
+      q:"What do you do next?",
+      o:["Create a new profile so the history starts clean","Keep searching for the existing record and any open enrollment","Ask the county to merge whatever turns up later"], a:1,
+      w:"Search before you create. A duplicate splits her history, breaks counts, and can quietly cost her a match.", cat:"Data Quality", ref:"Clarity profile standards; blueprint 6.8" },
+    { step:"Step 4 · The Fork", crit:false,
+      s:"Ms. R., 68, was discharged from hospital with nowhere settled to return to and has stayed a few nights each with church friends. She wants a permanent place she can manage.",
+      q:"Where do the Pre-Questions point?",
+      o:["Crisis assessment only","Housing assessment, while safety and health stay on the plan","No assessment: she has places to sleep"], a:1,
+      w:"Couch-surfing is a housing crisis, and her stated goal is a permanent home. The Pre-Questions route on the goal while health and safety stay live on the care plan.", cat:"Eligibility", ref:"CE Pre-Questions workflow; blueprint 6.1" },
+    { step:"Step 4 · The Fork", crit:true,
+      s:"She asks what the assessment means for her chances of getting housed.",
+      q:"What can you tell her?",
+      o:["That the assessment decides whether she qualifies","That it is the next step, and you will walk it with her","That a good score means she will be housed soon"], a:1,
+      w:"Never promise a placement, a timeline, or a score outcome. A promise made at the front door is repaid by someone else at the back.", cat:"Participant Rights", ref:"Appendix A, Course 2 critical item 9" },
+    { step:"Step 5 · Enrollment and CLS", crit:true,
+      s:"Ms. Turner is enrolled in Coordinated Entry and on the Housing Queue. Months pass and contacts get further apart.",
+      q:"What single habit keeps her from falling off every queue?",
+      o:["Re-enrolling her in Coordinated Entry each month","Recording a Current Living Situation at every encounter","Adding a note that she is still interested"], a:1,
+      w:"Current Living Situation at every encounter is the anti-auto-exit habit. Problem-solving auto-exits at 90 days of inactivity and Coordinated Entry at 180.", cat:"Data Quality", ref:"Appendix A, Course 2 critical items 2 and 8" },
+    { step:"Step 5 · Enrollment and CLS", crit:false,
+      s:"A colleague asks how often Coordinated Entry enrollment happens for one member.",
+      q:"What is the answer?",
+      o:["Once per episode","Annually, at recertification","Each time she presents with a new need"], a:0,
+      w:"Once per episode, in the one countywide CE program. Duplicate enrollments are among the most common data findings.", cat:"Enrollment", ref:"Clarity CE Enrollment form; Appendix A item 8" },
+    { step:"Step 6 · Crisis Assessment and the Queue", crit:false,
+      s:"Mr. T., 72, has been in an encampment eight months with diabetes and limited mobility, and is wary of congregate shelter.",
+      q:"What belongs in the crisis assessment about the congregate option?",
+      o:["Leave it out: preferences slow placement down","Record the mobility and health needs and his concerns, plainly","Mark him as refusing services"], a:1,
+      w:"The assessment carries what a placement has to accommodate, in his words where possible. Wariness is not refusal, and recording it as refusal harms him.", cat:"Assessment", ref:"CE Crisis Assessment workflow, Course 4" },
+    { step:"Step 7 · Transitional Housing", crit:true,
+      s:"Marcus moves into shelter while he waits for a St. Mary's Center transitional housing unit to open.",
+      q:"What happens to his place on the crisis queue?",
+      o:["He comes off it: he is sheltered now","He stays on it: the shelter is a holding spot, not his resolution","His record is paused until a unit opens"], a:1,
+      w:"Ask whether the placement is the resolution or a holding spot. Still waiting for transitional housing means he stays on the queue, with the record kept current.", cat:"Program Exits", ref:"Crisis-queue removal rule, blueprint 6.5" },
+    { step:"Step 7 · Transitional Housing", crit:true,
+      s:"A member asks whether a higher assessment score would get her into SMC transitional housing sooner.",
+      q:"What is the accurate answer?",
+      o:["Yes: a higher score moves her up the list","No: our transitional housing is engagement gated, not score gated","Only the Clinical Director can change the order"], a:1,
+      w:"The pathway is Coordinated Entry enrollment, then 90 days of engagement, then a fit review, then an open unit. Three sites, 24 units, so the wait is real.", cat:"Eligibility", ref:"Appendix A, Course 2 critical item 6" },
+    { step:"Step 8 · Housing Assessment and the Gate", crit:true,
+      s:"A colleague states that the threshold for your members is fixed at 80.",
+      q:"What is the accurate response?",
+      o:["Correct: 80 is the permanent supportive housing bar in policy","Thresholds are current practice, set by the Management Entity at least annually","Correct: 70 is the bar, so 80 is wrong"], a:1,
+      w:"Thresholds are current practice confirmed in training, not fixed law. Confirm the current number before you quote it to anyone.", cat:"Assessment", ref:"Appendix A item 10; threshold job aid rev. 11/28/2021" },
+    { step:"Step 8 · Housing Assessment and the Gate", crit:false,
+      s:"Ms. R. is recovering from surgery, too frail for the street but not needing a hospital bed. Mr. T. has significant functional limitation and heavy emergency-department use.",
+      q:"Where does each one belong?",
+      o:["Both onto the Housing Queue, waiting on the score","Ms. R. to Medical Respite by her provider; Mr. T. referred to Medically Frail Housing","Both to Medically Frail Housing"], a:1,
+      w:"Two parallel doors bypass the score entirely. Medical Respite is short-term post-acute care; Medically Frail is acuity-based and referred to Health Care for the Homeless.", cat:"Eligibility", ref:"Medically Frail Housing program, Sept 2025; blueprint 6.7" },
+    { step:"Step 8 · Housing Assessment and the Gate", crit:false,
+      s:"The Housing Social Worker is out for two weeks and assessments are stacking up.",
+      q:"Who completes Coordinated Entry assessments in the meantime?",
+      o:["Any trained staff member can pick them up","They sit with the Housing Social Worker; the Navigator is as-needed backup","The Manager signs them off instead"], a:1,
+      w:"Coordinated Entry assessments sit with the trained Housing Social Worker. The Housing Navigator is as-needed backup only.", cat:"Case Documentation", ref:"Appendix A, Course 2 critical item 3" },
+    { step:"Step 9 · Match, Lease and TSS", crit:true,
+      s:"A member asks whether you can get her the next available apartment.",
+      q:"What is true about matching, and what can you promise?",
+      o:["We match from our own list, so we can prioritize her","We do not match: Home Stretch matches from the queues, and readiness is ours","We can request a specific unit for a specific member"], a:1,
+      w:"We do not match. We feed the queues, keep her match-ready, and receive the referral. That is exactly what staff can promise.", cat:"Participant Rights", ref:"Appendix A, Course 2 critical item 5" },
+    { step:"Step 9 · Match, Lease and TSS", crit:true,
+      s:"Two members sit near the top of the queue. One has her four core documents in the HMIS files section, the other has none gathered.",
+      q:"What does that difference mean in practice?",
+      o:["Nothing: queue date decides everything","Readiness decides who actually moves","The unready member is removed from the queue"], a:1,
+      w:"Document readiness outranks queue date. A person at the top of a queue with no documents does not move.", cat:"Housing Stabilization", ref:"Blueprint 6.8, what prevents a match" },
+    { step:"Step 9 · Match, Lease and TSS", crit:true,
+      s:"Ms. Turner signs her permanent lease at her own kitchen table. Carla is beside her, and Hector from Tenancy Sustaining Services is waiting to be introduced.",
+      q:"At what point does the baton pass from Coordinated Entry and Navigation to TSS?",
+      o:["When the housing offer is accepted","At the permanent lease signature, then the warm handoff","On move-in day, once the furniture is in"], a:1,
+      w:"The permanent lease signature is the handoff point. Carla introduces Hector in person, documents the handoff, and the care plan continues without a gap.", cat:"Housing Stabilization", ref:"The Road Home, warm handoff to TSS" },
+  ]
+    },
+    "ces": {
+      title: "Coordinated Entry Academy",
+      subtitle: "the nine-step workflow, by the book",
+      blurb: "The graded exam for the Coordinated Entry curriculum: the workflow itself, the forms and clocks behind it, and the rules that decide what staff may promise.",
+      questions: [
+    { step:"Act One · Getting in the door", crit:true, cat:"System Access", ref:"Course 1: the front door rule",
+      s:"A member is referred to your Housing Navigator by a colleague who has already talked with her twice.",
+      q:"What must be true before Housing Navigation opens?",
+      o:["A warm referral from a colleague is enough","Coordinated Entry is completed first","The Navigator has capacity this week"], a:1,
+      w:"Coordinated Entry is the required front door to Housing Navigation. Nothing about the referral route changes that." },
+    { step:"Act One · Getting in the door", crit:true, cat:"Funding Rules", ref:"HPS Policy rev. 5/14/2025; SMC practice",
+      s:"A member has a three-day notice and needs help holding her unit.",
+      q:"Where does eviction prevention start?",
+      o:["SMC flexible funds","The county Housing Resource Center, then turn internal to SMC","A rapid rehousing referral"], a:1,
+      w:"We do not do rapid rehousing. The HRC is the first source for eviction prevention, then we turn internal to SMC supports." },
+    { step:"Act One · Getting in the door", crit:false, cat:"System Access", ref:"Senior triage; HUD definition",
+      s:"An older adult says she is fine, just staying with a cousin while things settle.",
+      q:"Which question belongs in senior triage?",
+      o:["Are you homeless right now?","Where did you sleep last night?","Do you want to apply for shelter?"], a:1,
+      w:"Many older adults will not self-identify as homeless. The sleep question captures the real situation without asking for a label." },
+    { step:"Act One · Getting in the door", crit:false, cat:"Case Documentation", ref:"Blueprint 6.5, three-step workflow",
+      s:"You finish a problem-solving conversation in the field.",
+      q:"What is the documentation route?",
+      o:["You enter Clarity yourself before leaving","Field capture, clinical review, then Coordinator entry into Clarity","The supervisor writes it up later"], a:1,
+      w:"Three steps, in order. The Data and Compliance Coordinator moves assessments from HMIS and reconciles for data quality control." },
+    { step:"Act One · Getting in the door", crit:true, cat:"Data Quality", ref:"Clarity profile standards; blueprint 6.8",
+      s:"A returning member does not surface in your first record search.",
+      q:"What do you do?",
+      o:["Create a new profile","Keep searching for the existing record and any open enrollment","Flag it for the county to merge later"], a:1,
+      w:"Search before you create. Duplicates split a history and can cost a member a match." },
+    { step:"Act Two · Deciding the road", crit:false, cat:"Eligibility", ref:"CE Pre-Questions workflow",
+      s:"A member wants a permanent place she can manage, and is currently couch-surfing.",
+      q:"Which road do the Pre-Questions choose?",
+      o:["Crisis assessment only","Housing assessment, with safety and health still on the plan","Neither: she has somewhere to sleep"], a:1,
+      w:"Couch-surfing is a housing crisis, and her goal is permanent housing. The Pre-Questions route on the goal." },
+    { step:"Act Two · Deciding the road", crit:true, cat:"Participant Rights", ref:"Appendix A, Course 2 critical item 9",
+      s:"She asks how long the wait will be and whether her score is good enough.",
+      q:"What may you tell her?",
+      o:["An honest estimate based on recent placements","That it is the next step and you will walk it with her","That her score looks strong"], a:1,
+      w:"Never promise a placement, a timeline, or a score outcome. A promise at the front door is repaid by someone else at the back." },
+    { step:"Act Two · Deciding the road", crit:true, cat:"Data Quality", ref:"Appendix A, critical items 2 and 8",
+      s:"A member is enrolled and waiting, and contacts are getting further apart.",
+      q:"What keeps her on the queue?",
+      o:["A monthly note that she is still interested","A Current Living Situation at every encounter","Re-enrolling her each quarter"], a:1,
+      w:"CLS at every encounter prevents auto-exit. Problem-solving exits at 90 days of inactivity, Coordinated Entry at 180." },
+    { step:"Act Two · Deciding the road", crit:false, cat:"Enrollment", ref:"Clarity CE Enrollment form",
+      s:"A colleague asks how many Coordinated Entry enrollments one member should have in an episode.",
+      q:"What is correct?",
+      o:["One per episode","One per program she is referred to","A new one each year"], a:0,
+      w:"One per episode, in the one countywide CE program. Duplicate enrollments are a common data finding." },
+    { step:"Act Two · Deciding the road", crit:true, cat:"Program Exits", ref:"Crisis-queue removal rule, blueprint 6.5",
+      s:"Marcus takes a shelter bed while still waiting for an SMC transitional housing unit.",
+      q:"What happens on the crisis queue?",
+      o:["He is removed: he is sheltered","He stays: the bed is a holding spot, not his resolution","His record pauses until a unit frees up"], a:1,
+      w:"Ask whether the placement is the resolution or a waiting room. Still waiting for TH means he stays on the queue." },
+    { step:"Act Two · Deciding the road", crit:true, cat:"Eligibility", ref:"Appendix A, Course 2 critical item 6",
+      s:"A member asks whether a higher score speeds up SMC transitional housing.",
+      q:"What is accurate?",
+      o:["Yes, the list is score ordered","No: our transitional housing is engagement gated, not score gated","Only with Clinical Director approval"], a:1,
+      w:"CE enrollment, then 90 days of engagement, then a fit review, then an open unit. Three sites, 24 units." },
+    { step:"Act Three · Getting home", crit:true, cat:"Assessment", ref:"Appendix A item 10; threshold job aid",
+      s:"A colleague quotes a fixed threshold number to a member as policy.",
+      q:"What is the correction?",
+      o:["The number is right, the delivery was wrong","Thresholds are current practice set by the Management Entity at least annually","Thresholds are set per agency"], a:1,
+      w:"Thresholds are current practice confirmed in training, not fixed law. Confirm the number before quoting it." },
+    { step:"Act Three · Getting home", crit:false, cat:"Eligibility", ref:"Medically Frail Housing, Sept 2025",
+      s:"One member needs short-term recovery after surgery. Another has significant functional limitation and heavy ED use.",
+      q:"Which doors apply?",
+      o:["Both wait on the Housing Queue","Medical Respite for the first, Medically Frail Housing for the second","Medically Frail Housing for both"], a:1,
+      w:"Two parallel doors bypass the score. Respite is post-acute and provider referred; Medically Frail is acuity based." },
+    { step:"Act Three · Getting home", crit:false, cat:"Case Documentation", ref:"Appendix A, Course 2 critical item 3",
+      s:"Assessments are backing up while the Housing Social Worker is out.",
+      q:"Who may complete them?",
+      o:["Anyone trained and available","The Housing Social Worker; the Navigator is as-needed backup","The Manager, by signature"], a:1,
+      w:"Coordinated Entry assessments sit with the trained Housing Social Worker. The Navigator is backup only, as needed." },
+    { step:"Act Three · Getting home", crit:true, cat:"Participant Rights", ref:"Appendix A, Course 2 critical item 5",
+      s:"A member asks you to put her at the front of the line for the next unit.",
+      q:"What is true?",
+      o:["We can prioritize within our own caseload","We do not match: Home Stretch matches from the queues, readiness is ours","We can request a named unit"], a:1,
+      w:"We do not match. We feed the queues, keep her ready, and receive the referral. That is what we can promise." },
+    { step:"Act Three · Getting home", crit:true, cat:"Housing Stabilization", ref:"Blueprint 6.8, what prevents a match",
+      s:"Two members are near the top of the queue; one has her four core documents on file and one has none.",
+      q:"What does that mean?",
+      o:["Nothing, queue date rules","Readiness decides who actually moves","The unready one is removed"], a:1,
+      w:"Document readiness outranks queue date. A member at the top with no documents does not move." },
+    { step:"Act Three · Getting home", crit:true, cat:"Housing Stabilization", ref:"Warm handoff to TSS",
+      s:"Your member signs her permanent lease, and the TSS Coordinator is waiting to be introduced.",
+      q:"When does the baton pass to Tenancy Sustaining Services?",
+      o:["When the offer is accepted","At the permanent lease signature, then the warm handoff","At the 30-day check-in"], a:1,
+      w:"The lease signature is the handoff point. The introduction is made in person where possible and documented, so the care plan continues without a gap." },
+      ]
+    },
+  };
+
+  examId() {
+    try {
+      const v = new URLSearchParams(location.search).get("exam") || "road-home";
+      return this.BANKS[v] ? v : "road-home";
+    } catch (e) { return "road-home"; }
+  }
+  bank() { return this.BANKS[this.examId()]; }
+  get Q() { return this.bank().questions; }
+  get KEY() { return "smc-exam-" + this.examId(); }
+  STANDARD = { passingScore: 85, requireAllCritical: true, randomizeQuestions: true };
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem(this.KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw) || {};
+      const next = { history: d.history || [], attempts: (d.history || []).length };
+      if (d.order && d.answers && Object.keys(d.answers).length) {
+        next.order = d.order; next.answers = d.answers; next.phase = "exam";
+        next.idx = Math.min(d.idx || 0, this.Q.length - 1);
+      }
+      this.setState(next);
+    } catch (e) {}
+  }
+  shuffle(seed) {
+    const idx = this.Q.map((q, i) => i);
+    let s = seed || 1;
+    for (let i = idx.length - 1; i > 0; i--) {
+      s = (s * 1103515245 + 12345) & 0x7fffffff;
+      const j = s % (i + 1);
+      const t = idx[i]; idx[i] = idx[j]; idx[j] = t;
+    }
+    return idx;
+  }
+  persist(patch) {
+    try {
+      const prev = JSON.parse(localStorage.getItem(this.KEY) || "{}");
+      localStorage.setItem(this.KEY, JSON.stringify(Object.assign(prev, patch)));
+    } catch (e) {}
+  }
+  renderVals() {
+    const s = this.state;
+    const total = this.Q.length;
+    const passNeeded = Math.ceil(total * 0.85);
+    const critTotal = this.Q.filter((q) => q.crit).length;
+    const order = s.order && s.order.length === total ? s.order : this.Q.map((qq, i) => i);
+    const qIndex = order[Math.min(s.idx, order.length - 1)];
+    const q = this.Q[qIndex];
+    const bank = this.bank();
+    const answeredCount = Object.keys(s.answers).length;
+    const allAnswered = answeredCount === total;
+    const correctCount = this.Q.filter((qq, i) => s.answers[i] === qq.a).length;
+    const critCorrect = this.Q.filter((qq, i) => qq.crit && s.answers[i] === qq.a).length;
+    const pct = Math.round((correctCount / total) * 100);
+    const passed = pct >= 85 && critCorrect === critTotal;
+    const letters = ["A", "B", "C", "D"];
+    const isQuestion = s.phase === "exam";
+    const isResult = s.phase === "result";
+    return {
+      railLabel: isResult ? "Result" : isQuestion ? "Question " + (s.idx + 1) + " of " + total : s.attempts > 0 ? "Attempt " + (s.attempts + 1) : "Not started",
+      progressPct: isResult ? "100%" : isQuestion ? Math.round(((s.idx + 1) / total) * 100) + "%" : "0%",
+      isIntro: s.phase === "intro",
+      isQuestion: isQuestion,
+      isResult: isResult,
+      prevPageHref: this.examId() === "ces" ? "Road Home Exam.dc.html" : "CES Academy.dc.html",
+      prevPageLabel: this.examId() === "ces" ? "Academy exam" : "Coordinated Entry Academy",
+      nextPageHref: this.examId() === "ces" ? "Training Home.dc.html" : "Road Home Exam.dc.html?exam=ces",
+      nextPageLabel: this.examId() === "ces" ? "Training home" : "Coordinated Entry exam",
+      examTitle: bank.title,
+      examSubtitle: bank.subtitle,
+      examBlurb: bank.blurb,
+      qCategory: q ? (q.cat || "General") : "",
+      attemptLine: s.history && s.history.length ? "Previous attempts: " + s.history.map((x) => x.pct + "%").join(", ") : "No previous attempts",
+      hasHistory: !!(s.history && s.history.length),
+      categoryScores: this.Q.reduce((acc, qq, i) => {
+        const c = qq.cat || "General";
+        let row = acc.find((r) => r.name === c);
+        if (!row) { row = { name: c, total: 0, correct: 0, pct: 0, bar: "0%" }; acc.push(row); }
+        row.total += 1;
+        if (s.answers[i] === qq.a) row.correct += 1;
+        row.pct = Math.round((row.correct / row.total) * 100);
+        row.bar = row.pct + "%";
+        row.label = row.correct + " of " + row.total;
+        row.color = row.pct === 100 ? "#1E7A52" : row.pct >= 50 ? "#F4941C" : "#B23A22";
+        return acc;
+      }, []),
+      qTotal: total,
+      passNeeded: passNeeded,
+      critTotal: critTotal,
+      startLabel: s.attempts > 0 ? "Start attempt " + (s.attempts + 1) : "Start the exam",
+      start: () => {
+        const order = this.STANDARD.randomizeQuestions ? this.shuffle(Date.now() % 100000) : this.Q.map((q, i) => i);
+        this.persist({ order, answers: {}, idx: 0 });
+        this.setState({ phase: "exam", idx: 0, answers: {}, order });
+      },
+      qNum: s.idx + 1,
+      isCritical: !!(q && q.crit),
+      stepLabel: q ? q.step : "",
+      scenario: q ? q.s : "",
+      question: q ? q.q : "",
+      options: q ? q.o.map((label, i) => {
+        const picked = s.answers[qIndex] === i;
+        return {
+          label, letter: letters[i],
+          bg: picked ? "#F2F7FA" : "#FFFFFF",
+          border: picked ? "#22333F" : "#1C5C7A",
+          markColor: picked ? "#22333F" : "#1C5C7A",
+          pick: () => {
+            const answers = Object.assign({}, s.answers);
+            answers[qIndex] = i;
+            this.setState({ answers });
+            this.persist({ answers, idx: s.idx, order: s.order });
+          },
+        };
+      }) : [],
+      answeredLabel: isResult ? (passed ? "Passed" : "Not passed") : isQuestion ? answeredCount + " of " + total + " answered" : "85% and every critical item to pass",
+      goBack: () => { if (isQuestion && s.idx > 0) { this.setState({ idx: s.idx - 1 }); try { window.scrollTo(0, 0); } catch (e) {} } },
+      backVis: isQuestion && s.idx > 0 ? "visible" : "hidden",
+      goNext: () => {
+        if (!isQuestion) return;
+        if (s.idx < total - 1) { this.setState({ idx: s.idx + 1 }); try { window.scrollTo(0, 0); } catch (e) {} return; }
+        if (!allAnswered) return;
+        const attempt = { at: new Date().toISOString(), pct, passed, correct: correctCount, total, critCorrect, critTotal };
+        const history = (s.history || []).concat([attempt]).slice(-20);
+        this.persist({ history, answers: {}, order: null, idx: 0 });
+        this.setState({ phase: "result", attempts: history.length, history });
+        try { window.scrollTo(0, 0); } catch (e) {}
+      },
+      nextVis: isQuestion ? "visible" : "hidden",
+      nextOpacity: s.idx < total - 1 ? (s.answers[qIndex] === undefined ? 0.45 : 1) : (allAnswered ? 1 : 0.45),
+      nextLabel: s.idx < total - 1 ? "Next question" : "Submit exam",
+      resultHead: passed ? "Passed" : "Not passed yet",
+      resultRule: passed ? "#1E7A52" : "#B23A22",
+      resultBody: passed
+        ? "You scored above the 85 percent bar and answered every critical item correctly. Your certificate is available from your learning path."
+        : critCorrect < critTotal
+          ? "Every critical item has to be correct to pass, and at least one was missed. Review the items below and retake the exam when you are ready."
+          : "You did not reach the 85 percent bar. Review the items below and retake the exam when you are ready.",
+      scorePct: pct + "%",
+      scoreFraction: correctCount + " of " + total + " correct",
+      critScore: critCorrect + " of " + critTotal,
+      retake: () => this.setState({ phase: "intro", idx: 0, answers: {} }),
+      resetHistory: () => {
+        try { if (window.confirm && !window.confirm("Clear your saved attempts for this exam on this device?")) return; } catch (e) {}
+        try { localStorage.removeItem(this.KEY); } catch (e) {}
+        this.setState({ phase: "intro", idx: 0, answers: {}, order: null, history: [], attempts: 0 });
+      },
+      review: this.Q.map((qq, i) => {
+        const chosen = s.answers[i];
+        const right = chosen === qq.a;
+        return {
+          num: i + 1, step: qq.step, critical: qq.crit,
+          verdict: right ? "Correct" : "Review this",
+          rule: right ? "#1E7A52" : "#B23A22",
+          question: qq.q,
+          chosen: chosen === undefined ? "No answer" : qq.o[chosen],
+          correct: qq.o[qq.a],
+          why: qq.w,
+          ref: qq.ref || "Program guidance",
+          cat: qq.cat || "General",
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>
